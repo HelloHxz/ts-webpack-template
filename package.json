@@ -4,17 +4,18 @@
   "description": "TypeScript Webpack Starter",
   "main": "index.js",
   "scripts": {
-    "start": "node ./scripts/start.js --env.env=development",
+    "start": "node ./scripts/start.js --env.env=dev",
     "start-uat": "node ./scripts/start.js --env.env=uat",
-    "start-pro": "node ./scripts/start.js --env.env=production",
-    "build": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=development",
+    "start-pro": "node ./scripts/start.js --env.env=pro",
+    "build": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=dev",
     "build-uat": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=uat",
-    "build-pro": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=production",
+    "build-pro": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=pro",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/webpack-env": "^1.14.0",
     "autoprefixer": "^9.6.1",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",

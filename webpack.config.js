@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 module.exports = function start(env) {
-  const nodeEnv = env.env || 'development';
+  const nodeEnv = env.env || 'dev';
   const distOutPutPath = path.resolve(__dirname, `dist/${nodeEnv}`);
   const action = env.action || 'start';
   const routerType = env.routertype || 'hash'; // hash || history
@@ -59,10 +59,10 @@ module.exports = function start(env) {
     },
     resolve: {
       // DefinePlugin的一种开发变量注入的替代方案 编译时不同环境加在不同代码文件的方案
-      extensions: [`.${nodeEnv}.js`, `.${routerType}.js`, '.js'],
-    //   alias: {
-    //     "star-web": path.resolve(__dirname, './'),
-    //   },
+      extensions: [`.${nodeEnv}.ts`, `.${routerType}.ts`, '.ts','.js'],
+      alias: {
+        "star-web": path.resolve(__dirname, './'),
+      },
     },
     module: {
       rules: [
