@@ -94,9 +94,6 @@ module.exports = function start(env) {
               plugins: loader => [
                 require('postcss-import')({ root: loader.resourcePath }),
                 require('autoprefixer')({
-                  browsers: [
-                    '> 0.01%',
-                  ],
                 }),
               ],
             },
@@ -124,9 +121,6 @@ module.exports = function start(env) {
             plugins: loader => [
               require('postcss-import')({ root: loader.resourcePath }),
               require('autoprefixer')({
-                browsers: [
-                  '> 0.01%',
-                ],
               }),
             ],
           },

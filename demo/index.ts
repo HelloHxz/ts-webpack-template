@@ -1,5 +1,6 @@
-import Config from './config';
 import { Button } from 'star-web';
+import Config from './config';
+import './index.less';
 
 const helloTS:string = 'xxxxx';
 
@@ -10,6 +11,7 @@ new Button({
     disabled: false
 });
 const helloFunc = function(first:string, second:number):string {
+    document.body.className = 'test';
     return `${first}_${second}_${Config.title}`;
 }
 alert(helloFunc(helloTS,2));
