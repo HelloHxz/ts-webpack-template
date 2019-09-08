@@ -4,8 +4,36 @@
   "description": "TypeScript Webpack Starter",
   "main": "index.js",
   "scripts": {
+    "start": "node ./scripts/start.js --env.env=development",
+    "start-uat": "node ./scripts/start.js --env.env=uat",
+    "start-pro": "node ./scripts/start.js --env.env=production",
+    "build": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=development",
+    "build-uat": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=uat",
+    "build-pro": "webpack -p --progress --config  webpack.config.js --env.action=build --env.env=production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^9.6.1",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "open-browser-webpack-plugin": "0.0.5",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "shelljs": "^0.8.3",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  }
 }
