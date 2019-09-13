@@ -2,7 +2,7 @@ import './index.less';
 
 interface ButtonProperty {
   title: string;
-  disabled: boolean;
+     disabled: boolean;
 }
 
 class Button    {
