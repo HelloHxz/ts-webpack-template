@@ -5,7 +5,7 @@ interface ButtonProperty {
   disabled: boolean;
 }
 
-class Button {
+class Button    {
   constructor(props: ButtonProperty) {}
 }
 
