@@ -18,6 +18,11 @@
   },
   "author": "",
   "license": "ISC",
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
     "@types/webpack-env": "^1.14.0",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
