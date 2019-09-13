@@ -71,20 +71,6 @@ module.exports = function start(env) {
             use: 'ts-loader',
             exclude: /node_modules/
         },
-    //   {
-    //     test: /\.jsx?$/,
-    //     use: {
-    //       loader: 'babel-loader',
-    //       options: {
-    //         presets: ['@babel/preset-env', '@babel/preset-react'],
-    //         plugins: [
-    //           'transform-class-properties',
-    //           'syntax-dynamic-import',
-    //           ["import", { "libraryName": "star-web", "libraryDirectory": "src/components"}]
-    //         ],
-    //       },
-    //     },
-    //   },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader',

@@ -2,6 +2,7 @@ import { Button } from 'star-web';
 import Config from './config';
 import './index.less';
 
+
 const helloTS:string = 'xxxxx';
 
 console.log(Button)
