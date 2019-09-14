@@ -2,13 +2,11 @@ class Box {
   props: BoxProperty;
   constructor(props: BoxProperty) {
     this.props = props;
-    console.log(">>");
+    console.log('>>');
     console.log(props);
   }
 
-  public _setLayout = ():void => {
-
-  }
+  public _setLayout = (): void => {};
 }
 
 export interface BoxProperty {
