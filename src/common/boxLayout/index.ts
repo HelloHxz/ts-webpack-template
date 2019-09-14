@@ -10,7 +10,6 @@ export { Box, BoxProperty };
 class BoxLayout {
   props: BoxLayoutProperty;
   root: any;
-  static Box: Box;
   constructor(props: BoxLayoutProperty) {
     this.props = props;
     this.initLayout();

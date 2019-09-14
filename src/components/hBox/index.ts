@@ -21,7 +21,7 @@ class HBox extends Box {
 }
 
 class HBoxLayout extends BoxLayout {
-  static Box: any = HBox;
+  static Box: any;
   constructor(props: HBoxLayoutProperty) {
     super({
       ...props,
@@ -31,5 +31,7 @@ class HBoxLayout extends BoxLayout {
     });
   }
 }
+
+HBoxLayout.Box = HBox;
 
 export default HBoxLayout;
