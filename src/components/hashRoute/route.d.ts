@@ -1,7 +1,7 @@
 export interface IRoute {
-  init(initPrps: RouteInitProperty): void;
+  key: string,
 }
 
 export interface RouteInitProperty {
-     name:string;
+  name: string;
 }

@@ -1,7 +1,8 @@
 import './index.less';
 export interface ButtonProperty {
-  title: string;
-  disabled: boolean;
+  title?: string;
+  disabled?: boolean;
+  className?: string | Function;
 }
 
 class Button {
