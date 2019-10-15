@@ -2,16 +2,16 @@ import { JSONProperty, RegisterRouteProperty, URLInfo } from '../props';
 import NotFoundPage from './NotFoundPage';
 
 class RouteUtils {
-  routeSeedKey: string = '__r';
-  routeSeed: Number = 0;
+  routeSeedKey = '__r';
+  routeSeed = 0;
   routeConfig?: RegisterRouteProperty;
   init = (config: RegisterRouteProperty) => {
     this.routeConfig = config;
     this.routeSeedKey = config.routeSeedKey || '__r';
     const initQuery: URLInfo = this.getQueryFromUrl(null);
     this.routeSeed = this._getRouteSeed(initQuery);
-  }
-  _getRouteSeed = (query: JSONProperty): Number => {
+  };
+  _getRouteSeed = (query: JSONProperty): number => {
     const _query = query || {};
     let routeSeed = _query[this.routeSeedKey] || 0;
     // eslint-disable-next-line
@@ -19,9 +19,9 @@ class RouteUtils {
       routeSeed = 0;
     }
     return parseInt(routeSeed, 10);
-  }
+  };
 
-  _parsePath = (path:string) => {
+  _parsePath = (path: string) => {
     /*
       const router = {
         home: require('./demo/home/pages/home/page.js'),
@@ -29,17 +29,17 @@ class RouteUtils {
         'some/somepage': require('./demo/home/pages/somepage/page.js'),
       };
     */
-   if(!this.routeConfig) {
-     return;
-   }
+    if (!this.routeConfig) {
+      return;
+    }
     const pathArr = path.split('/');
-    const pageName:string = pathArr.shift() || '';
+    const pageName: string = pathArr.shift() || '';
     return {
       PageClass: this.routeConfig.pages[pageName] || NotFoundPage,
       remainPath: pathArr.join('/'),
       pageName,
     };
-  }
+  };
 
   getPathFromUrl = (_urlInfo: URLInfo) => {
     const urlInfo = _urlInfo || this.getUrlInfo();
@@ -50,7 +50,7 @@ class RouteUtils {
     }
     const sArr = s.split('?');
     return sArr[0] || '';
-  }
+  };
 
   getQueryStringFromUrl = (_urlInfo: URLInfo): any => {
     const urlInfo = _urlInfo || this.getUrlInfo();
@@ -61,7 +61,7 @@ class RouteUtils {
     const str = Arr[Arr.length - 1];
     const strArr = str.split('#');
     return strArr[0];
-  }
+  };
 
   getQueryFromUrl = (_urlInfo: URLInfo | null): any => {
     const urlInfo = _urlInfo || this.getUrlInfo();
@@ -70,7 +70,7 @@ class RouteUtils {
       return null;
     }
     let re: {
-      [key: string]: string
+      [key: string]: string;
     } = {};
     const queryArr = queryStr.split('&');
     for (let i = 0, j = queryArr.length; i < j; i += 1) {
@@ -82,7 +82,7 @@ class RouteUtils {
       }
     }
     return re;
-  }
+  };
 
   getUrlInfo = (): URLInfo => {
     const re = {
@@ -102,7 +102,7 @@ class RouteUtils {
         query,
       },
     };
-  }
+  };
 }
 
-export default new RouteUtils;
+export default new RouteUtils();

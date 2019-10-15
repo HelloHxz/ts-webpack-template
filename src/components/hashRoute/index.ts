@@ -5,19 +5,16 @@ class HashRoute extends AbstractRoute {
   static rootRoute: HashRoute;
   static register = (props: RegisterRouteProperty): void => {
     const { wrapper, pages } = props;
-    HashRoute.rootRoute = new HashRoute({ });
+    HashRoute.rootRoute = new HashRoute({});
     wrapper.append(HashRoute.rootRoute.root);
-    $(window).bind('hash', () => {
-
-    });
+    $(window).bind('hash', () => {});
   };
   constructor(props: RouteInitProps) {
     super(props);
     this.initLayout();
   }
 
-  initLayout = () => {
-  }
+  initLayout = () => {};
 }
 
 export default HashRoute;

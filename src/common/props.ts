@@ -1,5 +1,3 @@
-
-
 import Route from './route';
 
 export interface JSONProperty {
@@ -7,19 +5,17 @@ export interface JSONProperty {
 }
 
 export interface URLInfo {
-  href: string,
-  hash: string,
-  pathname: string,
-  routeSeed: Number,
-  routeKey: string,
-  query: JSONProperty,
+  href: string;
+  hash: string;
+  pathname: string;
+  routeSeed: number;
+  routeKey: string;
+  query: JSONProperty;
 }
-
 
 export interface RouteInitProps {
-  parentRoute?: Route,
+  parentRoute?: Route;
 }
-
 
 export interface RegisterRouteProperty {
   wrapper: JQuery<HTMLElement>;

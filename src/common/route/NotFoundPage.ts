@@ -1,5 +1,5 @@
 export default class NotFoundPage {
-  render () {
+  render() {
     return $('<div>asd</div>');
   }
 }
