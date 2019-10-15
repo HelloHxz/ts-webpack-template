@@ -86,6 +86,16 @@ module.exports = function start(env) {
           }],
       },
       {
+        test: require.resolve('jquery'),
+        use: [{
+           loader: 'expose-loader',
+           options: 'jQuery'
+        },{
+           loader: 'expose-loader',
+           options: '$'
+        }]
+     },
+      {
         test: /\.(png|jpg|jpeg|gif|woff)$/,
         loader: 'url-loader?limit=6144&name=imgs/[path][name].[ext]',
       },

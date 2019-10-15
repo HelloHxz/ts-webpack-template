@@ -1,12 +1,17 @@
-export interface RegisterRouteProperty {
-  wrapper: HTMLElement;
-  pages: JSONProperty;
-}
-export interface JSONProperty {
-  [key: string]: any;
-}
+import { JSONProperty, RouteInitProps, RegisterRouteProperty } from '../props';
+import RouteUtils from './utils';
 
 export default abstract class AbstractRoute {
+  routePath:string = '';
+  props:RouteInitProps;
+  root:JQuery<HTMLElement>;
   static register = (props: RegisterRouteProperty): void => {};
-  // abstract registeRoute():void;
+  // 刷新页面  
+  refresh = ():void => {}
+  constructor(props: RouteInitProps){
+    this.props = props;
+    // RouteUtils.init({});
+    this.root = $("<div class='star-route-wrapper'/>");
+  }
 }
+
