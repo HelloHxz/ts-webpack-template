@@ -1,4 +1,4 @@
-import { JSONProperty, RegisterRouteProperty, URLInfo } from '../props';
+import { JSONProperty, RegisterRouteProperty, URLInfo, IRouteInfo } from '../props';
 import NotFoundPage from './NotFoundPage';
 
 class RouteUtils {
@@ -21,27 +21,8 @@ class RouteUtils {
     return parseInt(routeSeed, 10);
   };
 
-  _parsePath = (path: string) => {
-    /*
-      const router = {
-        home: require('./demo/home/pages/home/page.js'),
-        'other/:id': require('./demo/home/pages/home/page.js'),
-        'some/somepage': require('./demo/home/pages/somepage/page.js'),
-      };
-    */
-    if (!this.routeConfig) {
-      return;
-    }
-    const pathArr = path.split('/');
-    const pageName: string = pathArr.shift() || '';
-    return {
-      PageClass: this.routeConfig.pages[pageName] || NotFoundPage,
-      remainPath: pathArr.join('/'),
-      pageName,
-    };
-  };
 
-  getPathFromUrl = (_urlInfo: URLInfo) => {
+  getPathFromUrl = (_urlInfo?: URLInfo) => {
     const urlInfo = _urlInfo || this.getUrlInfo();
     const nameArr = urlInfo.hash.split('#');
     const s = nameArr[1];
@@ -51,6 +32,29 @@ class RouteUtils {
     const sArr = s.split('?');
     return sArr[0] || '';
   };
+
+  
+  convertPathToRouteInfo = (path: string): IRouteInfo | null => {
+    /*
+      const router = {
+        home: require('./demo/home/pages/home/page.js'),
+        'other/:id': require('./demo/home/pages/home/page.js'),
+        'some/somepage': require('./demo/home/pages/somepage/page.js'),
+      };
+    */
+    if (!this.routeConfig) {
+      return null;
+    }
+    const pathArr = path.split('/');
+    const pageName: string = pathArr.shift() || '';
+    const PageClass = this.routeConfig.pages[pageName];
+    return {
+      PageClass: PageClass ? PageClass.default : NotFoundPage,
+      remainPath: pathArr.join('/'),
+      pageName,
+    };
+  }
+
 
   getQueryStringFromUrl = (_urlInfo: URLInfo): any => {
     const urlInfo = _urlInfo || this.getUrlInfo();

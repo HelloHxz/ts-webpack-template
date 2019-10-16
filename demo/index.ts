@@ -7,6 +7,7 @@ import './index.less';
 window.onload = () => {
   HashRoute.register({
     wrapper: $(document.body),
+    root: 'home/list',
     pages:{
         '/': require('./pages/root'),
         'home': require('./pages/home'),

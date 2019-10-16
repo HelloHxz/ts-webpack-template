@@ -15,10 +15,18 @@ export interface URLInfo {
 
 export interface RouteInitProps {
   parentRoute?: Route;
+  isRoot?: Boolean,
 }
 
 export interface RegisterRouteProperty {
   wrapper: JQuery<HTMLElement>;
   pages: JSONProperty;
+  root: string,
   routeSeedKey?: string;
+}
+
+export interface IRouteInfo {
+  PageClass: any,
+  remainPath: string,
+  pageName: string,
 }
