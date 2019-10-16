@@ -11,6 +11,8 @@ window.onload = () => {
     pages:{
         '/': require('./pages/root'),
         'home': require('./pages/home'),
+        'list': require('./pages/list'),
+        'detail': require('./pages/detail'),
     },
   });
 }

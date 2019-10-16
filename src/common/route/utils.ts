@@ -32,7 +32,7 @@ class RouteUtils {
     return sArr[0] || '';
   };
 
-  convertPathToRouteInfo = (path: string): IRouteInfo | null => {
+  convertPathToRouteInfo = (path: string): IRouteInfo => {
     /*
       const router = {
         home: require('./demo/home/pages/home/page.js'),
@@ -41,7 +41,11 @@ class RouteUtils {
       };
     */
     if (!this.routeConfig) {
-      return null;
+      return {
+        PageClass: null,
+        remainPath: '',
+        pageName: '',
+      };
     }
     const pathArr = path.split('/');
     const pageName: string = pathArr.shift() || '';
@@ -103,6 +107,35 @@ class RouteUtils {
         query,
       },
     };
+  };
+
+  combinePathAndQuery = (path, query) => {
+    let _path = path || '';
+    if (_path.indexOf('#') === 0) {
+      _path = _path.substring(1);
+    }
+    const queryStr = this.queryToString(query);
+    let hash = `#${_path}`;
+    if (queryStr.length > 0) {
+      hash = `${hash}?${queryStr}`;
+    }
+    return hash;
+  };
+
+  queryToString = (query) => {
+    const queryArr: string[] = [];
+    const _query = query || {};
+    // eslint-disable-next-line
+    for (const key in _query) {
+      const pVal = _query[key];
+      // eslint-disable-next-line
+      if (!isNaN(pVal) || typeof (pVal) === 'string') {
+        queryArr.push(`${key}=${encodeURIComponent(pVal)}`);
+      } else {
+        console.warn(`url 传参 ${key} 不是字符串类型或数字, queryToString 方法报错`);
+      }
+    }
+    return queryArr.join('&');
   };
 }
 
