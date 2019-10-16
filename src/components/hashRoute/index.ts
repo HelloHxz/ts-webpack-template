@@ -30,7 +30,7 @@ class HashRoute extends AbstractRoute {
       path = RouteUtils.getPathFromUrl();
     } else {
       if(this.props.parentRoute.curRouteInfo) {
-        path = this.props.parentRoute.curRouteInfo.remainPath;
+            path = this.props.parentRoute.curRouteInfo.remainPath;
       }
     }
     this.curRouteInfo = RouteUtils.convertPathToRouteInfo(path);
