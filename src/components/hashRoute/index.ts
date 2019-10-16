@@ -40,7 +40,7 @@ class HashRoute extends AbstractRoute {
 
   render = () => {
    if(this.curRouteInfo) {
-    this.root.append(new this.curRouteInfo.PageClass({ parentRoute: this }).render());
+       this.root.append(new this.curRouteInfo.PageClass({ parentRoute: this }).render());
    }
    return this.root;
   }
