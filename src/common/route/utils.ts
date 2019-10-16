@@ -21,7 +21,6 @@ class RouteUtils {
     return parseInt(routeSeed, 10);
   };
 
-
   getPathFromUrl = (_urlInfo?: URLInfo) => {
     const urlInfo = _urlInfo || this.getUrlInfo();
     const nameArr = urlInfo.hash.split('#');
@@ -33,7 +32,6 @@ class RouteUtils {
     return sArr[0] || '';
   };
 
-  
   convertPathToRouteInfo = (path: string): IRouteInfo | null => {
     /*
       const router = {
@@ -53,8 +51,7 @@ class RouteUtils {
       remainPath: pathArr.join('/'),
       pageName,
     };
-  }
-
+  };
 
   getQueryStringFromUrl = (_urlInfo: URLInfo): any => {
     const urlInfo = _urlInfo || this.getUrlInfo();

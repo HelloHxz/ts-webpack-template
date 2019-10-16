@@ -7,14 +7,12 @@ class HashRoute extends AbstractRoute {
   static register = (props: RegisterRouteProperty): void => {
     const { wrapper, pages } = props;
     RouteUtils.init(props);
-    HashRoute.rootRoute = new HashRoute({ isRoot: true});
-    $(window).bind('hash', () => {
-
-    });
+    HashRoute.rootRoute = new HashRoute({ isRoot: true });
+    $(window).bind('hash', () => {});
     const path = RouteUtils.getPathFromUrl();
-    if(RouteUtils.routeConfig) {
-      if(path === '') {
-        window.location.replace(window.location.href+'#'+ RouteUtils.routeConfig.root);
+    if (RouteUtils.routeConfig) {
+      if (path === '') {
+        window.location.replace(window.location.href + '#' + RouteUtils.routeConfig.root);
         window.location.reload();
         return;
       }
@@ -26,11 +24,11 @@ class HashRoute extends AbstractRoute {
     super(props);
     this.initLayout();
     let path = '';
-    if(!this.props.parentRoute) {
+    if (!this.props.parentRoute) {
       path = RouteUtils.getPathFromUrl();
     } else {
-      if(this.props.parentRoute.curRouteInfo) {
-            path = this.props.parentRoute.curRouteInfo.remainPath;
+      if (this.props.parentRoute.curRouteInfo) {
+        path = this.props.parentRoute.curRouteInfo.remainPath;
       }
     }
     this.curRouteInfo = RouteUtils.convertPathToRouteInfo(path);
@@ -39,11 +37,11 @@ class HashRoute extends AbstractRoute {
   initLayout = () => {};
 
   render = () => {
-   if(this.curRouteInfo) {
-       this.root.append(new this.curRouteInfo.PageClass({ parentRoute: this }).render());
-   }
-   return this.root;
-  }
+    if (this.curRouteInfo) {
+      this.root.append(new this.curRouteInfo.PageClass({ parentRoute: this }).render());
+    }
+    return this.root;
+  };
 }
 
 export default HashRoute;
