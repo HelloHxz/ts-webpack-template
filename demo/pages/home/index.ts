@@ -5,6 +5,7 @@ class HomePage {
   props: any;
   constructor(props) {
     this.props = props;
+    console.log(this.props);
   }
   render = () => {
     this.root = $('<div>HOME</div>');

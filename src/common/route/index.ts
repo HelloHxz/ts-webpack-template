@@ -1,7 +1,6 @@
 import { JSONProperty, IRouteInfo, RouteInitProps, RegisterRouteProperty } from '../props';
 
 export default abstract class AbstractRoute {
-  routePath = '';
   props: RouteInitProps;
   childRoute?: AbstractRoute;
   routeInfo: IRouteInfo;
@@ -14,7 +13,6 @@ export default abstract class AbstractRoute {
       remainPath: '',
     };
     this.props = props;
-    // RouteUtils.init({});
     this.root = $("<div class='star-route-wrapper'/>");
   }
 }

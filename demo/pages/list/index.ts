@@ -18,6 +18,11 @@ class ListPage {
       HashRoute.push('detail', {});
     });
     this.root.append(BTN2);
+    const BTN3 = $('<button>NotFound</button>');
+    BTN3.bind('click', () => {
+      HashRoute.push('home/detail2', {});
+    });
+    this.root.append(BTN3);
     return this.root;
   }
 }

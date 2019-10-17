@@ -1,16 +1,16 @@
 import AbstractRoute from '../../common/route';
-import { RegisterRouteProperty, RouteInitProps, IRouteInfo } from '../../common/props';
+import { RegisterRouteProperty, RouteInitProps, IRouteInfo, JSONProperty } from '../../common/props';
 import RouteUtils from '../../common/route/utils';
 
 class HashRoute extends AbstractRoute {
   static rootRoute: HashRoute;
 
-  static push = (path, query) => {
+  static push = (path, query:JSONProperty) => {
     window.location.hash = RouteUtils.combinePathAndQuery(path, query);
   };
 
   static register = (props: RegisterRouteProperty): void => {
-    const { wrapper, pages } = props;
+    const { wrapper } = props;
     RouteUtils.init(props);
     HashRoute.rootRoute = new HashRoute({ isRoot: true });
     $(window).bind('hashchange', () => {
@@ -24,41 +24,43 @@ class HashRoute extends AbstractRoute {
         return;
       }
     }
-    HashRoute.rootRoute.render();
-    wrapper.append(HashRoute.rootRoute.root);
+    const GlobalPage = RouteUtils.getGlobalPageClass();
+    if(GlobalPage) {
+      wrapper.append(new GlobalPage({route: HashRoute.rootRoute}).render());
+    } else {
+      wrapper.append(HashRoute.rootRoute.render());
+    }
+ 
   };
   constructor(props: RouteInitProps) {
     super(props);
-    this.initLayout();
-    this.routeInfo = this.getrouteInfo();
-    if (this.props.parentRoute) {
-      this.props.parentRoute.childRoute = this;
+    this.routeInfo = this.getRouteInfo();
+    if (this.props.route) {
+      this.props.route.childRoute = this;
     }
   }
 
-  initLayout = () => {};
-
-  getrouteInfo = (): IRouteInfo => {
-    let path = '';
-    if (!this.props.parentRoute) {
+  getRouteInfo = (): IRouteInfo => {
+    let path:string = '';
+    if (!this.props.route) {
       path = RouteUtils.getPathFromUrl();
     } else {
-      if (this.props.parentRoute.routeInfo) {
-        path = this.props.parentRoute.routeInfo.remainPath;
+      if (this.props.route.routeInfo) {
+        path = this.props.route.routeInfo.remainPath;
       }
     }
     return RouteUtils.convertPathToRouteInfo(path);
   };
 
   reRender = () => {
-    const reRenderRouteInfo = this.getrouteInfo();
+    const reRenderRouteInfo = this.getRouteInfo();
     if (reRenderRouteInfo.pageName !== this.routeInfo.pageName) {
       this.routeInfo = reRenderRouteInfo;
       this.render();
     } else {
       this.routeInfo = reRenderRouteInfo;
       if (this.childRoute) {
-        this.childRoute.routeInfo = (this.childRoute as HashRoute).getrouteInfo();
+        this.childRoute.routeInfo = (this.childRoute as HashRoute).getRouteInfo();
         (this.childRoute as HashRoute).render();
       }
     }
@@ -67,7 +69,7 @@ class HashRoute extends AbstractRoute {
   render = () => {
     this.root.empty();
     if (this.routeInfo) {
-      this.root.append(new this.routeInfo.PageClass({ parentRoute: this }).render());
+      this.root.append(new this.routeInfo.PageClass({ route: this }).render());
     }
     return this.root;
   };

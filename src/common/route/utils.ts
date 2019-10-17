@@ -8,7 +8,7 @@ class RouteUtils {
   init = (config: RegisterRouteProperty) => {
     this.routeConfig = config;
     this.routeSeedKey = config.routeSeedKey || '__r';
-    const initQuery: URLInfo = this.getQueryFromUrl(null);
+    const initQuery: JSONProperty = this.getQueryFromUrl(null);
     this.routeSeed = this._getRouteSeed(initQuery);
   };
   _getRouteSeed = (query: JSONProperty): number => {
@@ -21,7 +21,7 @@ class RouteUtils {
     return parseInt(routeSeed, 10);
   };
 
-  getPathFromUrl = (_urlInfo?: URLInfo) => {
+  getPathFromUrl = (_urlInfo?: URLInfo): string => {
     const urlInfo = _urlInfo || this.getUrlInfo();
     const nameArr = urlInfo.hash.split('#');
     const s = nameArr[1];
@@ -31,6 +31,14 @@ class RouteUtils {
     const sArr = s.split('?');
     return sArr[0] || '';
   };
+
+  getGlobalPageClass = () => {
+    if(!this.routeConfig) {
+      return null;
+    }
+    const pageClass = this.routeConfig.pages['/'];
+    return pageClass ? pageClass.default : null;
+  }
 
   convertPathToRouteInfo = (path: string): IRouteInfo => {
     /*
@@ -54,6 +62,7 @@ class RouteUtils {
       PageClass: PageClass ? PageClass.default : NotFoundPage,
       remainPath: pathArr.join('/'),
       pageName,
+      urlInfo: this.getUrlInfo(),
     };
   };
 
@@ -68,11 +77,11 @@ class RouteUtils {
     return strArr[0];
   };
 
-  getQueryFromUrl = (_urlInfo: URLInfo | null): any => {
+  getQueryFromUrl = (_urlInfo: URLInfo | null): JSONProperty => {
     const urlInfo = _urlInfo || this.getUrlInfo();
     const queryStr = this.getQueryStringFromUrl(urlInfo);
     if (!queryStr) {
-      return null;
+      return {};
     }
     let re: {
       [key: string]: string;
@@ -109,30 +118,28 @@ class RouteUtils {
     };
   };
 
-  combinePathAndQuery = (path, query) => {
-    let _path = path || '';
+  combinePathAndQuery = (path:string, query:JSONProperty):string => {
+    let _path:string = path || '';
     if (_path.indexOf('#') === 0) {
       _path = _path.substring(1);
     }
     const queryStr = this.queryToString(query);
-    let hash = `#${_path}`;
+    let hash:string = `#${_path}`;
     if (queryStr.length > 0) {
       hash = `${hash}?${queryStr}`;
     }
     return hash;
   };
 
-  queryToString = (query) => {
+  queryToString = (query:JSONProperty):string => {
     const queryArr: string[] = [];
-    const _query = query || {};
-    // eslint-disable-next-line
+    const _query:JSONProperty = query || {};
     for (const key in _query) {
       const pVal = _query[key];
-      // eslint-disable-next-line
       if (!isNaN(pVal) || typeof (pVal) === 'string') {
         queryArr.push(`${key}=${encodeURIComponent(pVal)}`);
       } else {
-        console.warn(`url 传参 ${key} 不是字符串类型或数字, queryToString 方法报错`);
+        console.warn(`url 传参 ${key} 的值不是字符串类型或数字, queryToString 方法报错`);
       }
     }
     return queryArr.join('&');
