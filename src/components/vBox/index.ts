@@ -1,12 +1,4 @@
-import BoxLayout from '../../common/boxLayout';
-
-export interface VBoxLayoutProperty {
-  children: VBoxProperty[];
-}
-
-export interface VBoxProperty {
-  height: number;
-}
+import BoxLayout, { VBoxLayoutProperty } from '../../common/boxLayout';
 
 
 class VBoxLayout extends BoxLayout {
@@ -15,7 +7,6 @@ class VBoxLayout extends BoxLayout {
       ...props,
       ...{
         direction: 'vertical',
-        children: [ { size: 12, direction:'vertical' }]
       },
     });
   }

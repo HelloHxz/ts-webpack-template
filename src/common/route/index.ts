@@ -1,4 +1,5 @@
 import { JSONProperty, IRouteInfo, RouteInitProps, RegisterRouteProperty } from '../props';
+import './index.less';
 
 export default abstract class AbstractRoute {
   props: RouteInitProps;

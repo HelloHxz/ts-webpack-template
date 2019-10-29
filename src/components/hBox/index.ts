@@ -1,13 +1,4 @@
-import BoxLayout from '../../common/boxLayout';
-
-export interface HBoxLayoutProperty {
-  children: HBoxProperty[];
-}
-
-export interface HBoxProperty {
-  width: number | string; 
-  render: ({ box }) => JQuery<HTMLElement> | null
-}
+import BoxLayout, { HBoxLayoutProperty } from '../../common/boxLayout';
 
 class HBoxLayout extends BoxLayout {
   constructor(props: HBoxLayoutProperty) {
@@ -15,7 +6,6 @@ class HBoxLayout extends BoxLayout {
       ...props,
       ...{
         direction: 'horizontal',
-        children: [{ size: 12, direction:'horizontal' }]
       },
     });
   }
