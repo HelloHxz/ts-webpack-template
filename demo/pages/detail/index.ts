@@ -1,3 +1,5 @@
+import { Button } from 'star-web';
+
 
 class DetailPage {
   root: JQuery<HTMLElement> | null = null;
@@ -6,7 +8,10 @@ class DetailPage {
     this.props = props;
   }
   render = () => {
+
     this.root = $('<div>Detail</div>');
+    const btn:Button = new Button({});
+    this.root.append(btn.root);
     return this.root;
   }
 }

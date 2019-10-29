@@ -1,37 +1,24 @@
-import BoxLayout, { Box } from '../../common/boxLayout';
+import BoxLayout from '../../common/boxLayout';
 
 export interface VBoxLayoutProperty {
-  children: VBox[];
+  children: VBoxProperty[];
 }
 
 export interface VBoxProperty {
   height: number;
 }
 
-class VBox extends Box {
-  constructor(props: VBoxProperty) {
-    super({
-      ...props,
-      ...{
-        direction: 'vertical',
-        size: props.height,
-      },
-    });
-  }
-}
 
 class VBoxLayout extends BoxLayout {
-  static Box: any;
   constructor(props: VBoxLayoutProperty) {
     super({
       ...props,
       ...{
         direction: 'vertical',
+        children: [ { size: 12, direction:'vertical' }]
       },
     });
   }
 }
-
-VBoxLayout.Box = VBox;
 
 export default VBoxLayout;

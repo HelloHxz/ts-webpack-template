@@ -1,37 +1,25 @@
-import BoxLayout, { Box } from '../../common/boxLayout';
+import BoxLayout from '../../common/boxLayout';
 
 export interface HBoxLayoutProperty {
-  children: HBox[];
+  children: HBoxProperty[];
 }
 
 export interface HBoxProperty {
-  width: number;
-}
-
-class HBox extends Box {
-  constructor(props: HBoxProperty) {
-    super({
-      ...props,
-      ...{
-        direction: 'horizontal',
-        size: props.width,
-      },
-    });
-  }
+  width: number | string; 
+  render: ({ box }) => JQuery<HTMLElement> | null
 }
 
 class HBoxLayout extends BoxLayout {
-  static Box: any;
   constructor(props: HBoxLayoutProperty) {
     super({
       ...props,
       ...{
         direction: 'horizontal',
+        children: [{ size: 12, direction:'horizontal' }]
       },
     });
   }
 }
 
-HBoxLayout.Box = HBox;
 
 export default HBoxLayout;

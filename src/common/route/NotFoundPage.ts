@@ -1,3 +1,4 @@
+
 export default class NotFoundPage {
   props: any;
   constructor(props) {

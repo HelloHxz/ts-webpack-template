@@ -2,6 +2,7 @@ import AbstractRoute from '../../common/route';
 import { RegisterRouteProperty, RouteInitProps, IRouteInfo, JSONProperty } from '../../common/props';
 import RouteUtils from '../../common/route/utils';
 
+
 class HashRoute extends AbstractRoute {
   static rootRoute: HashRoute;
 

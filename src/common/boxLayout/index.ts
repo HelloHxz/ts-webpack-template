@@ -1,8 +1,9 @@
 import Box, { BoxProperty } from './box';
+import { JSONProperty } from '../props';
 
 export interface BoxLayoutProperty {
   direction: 'vertical' | 'horizontal';
-  children: Box[];
+  children: BoxProperty[];
 }
 
 export { Box, BoxProperty };
