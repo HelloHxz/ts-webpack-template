@@ -7,28 +7,28 @@ export interface ToolTipPerperty {
 
 class ToolTip {
   props: ToolTipPerperty;
-  isDisabled: boolean = false;
+  isDisabled = false;
   constructor(props: ToolTipPerperty) {
     this.props = props;
   }
 
-  setDisabled = (isDisabled: boolean):void => {
+  setDisabled = (isDisabled: boolean): void => {
     this.isDisabled = isDisabled;
-  }
+  };
 
   render = (): JQuery<HTMLElement> => {
     const renderMethod = this.props.render;
-    if(renderMethod) {
+    if (renderMethod) {
       const root = renderMethod();
-      root.bind('click', (e)=> {
+      root.bind('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        alert("s");
+        alert('s');
       });
       return root;
     }
     return $('<div />');
-  }
+  };
 }
 
 export default ToolTip;

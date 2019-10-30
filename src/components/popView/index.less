@@ -1,0 +1,125 @@
+@import '~star-web/theme/index.less';
+
+.@{theme_namespace}{
+    .star-popview-fixed{
+        position: fixed;
+        z-Index:@popview_dp_zindex;
+    }
+    .star-popview-absolute{
+        position: absolute;
+        z-Index:@popview_dp_zindex;
+    }
+    .star-popview-hide{
+        visibility: hidden;
+    }
+    .star-popview-trans-bottom {
+        transform: translateX(-50%);
+    }
+    .star-popview-trans-top{
+        transform: translateX(-50%) translateY(-100%);
+    }
+    .star-popview-trans-right{
+        transform: translateY(-50%);
+    }
+    .star-popview-trans-topleft{
+        transform: translateX(-100%) translateY(-100%);
+    }
+    .star-popview-trans-topright{
+        transform: translateY(-100%);
+    }
+
+    .star-popview-trans-righttop{
+        transform:translateY(-100%);
+    }
+    .star-popview-trans-lefttop{
+        transform: translateX(-100%) translateY(-100%);
+    }
+    .star-popview-trans-bottomleft{
+        transform:translateX(-100%);
+    }
+
+    .star-popview-trans-left{
+        transform: translateY(-50%) translateX(-100%);
+    }
+    .star-popview-trans-leftbottom{
+        transform: translateX(-100%);
+    }
+    .star-popview-animate-right,.star-popview-animate-right-hide,
+    .star-popview-animate-rightbottom,.star-popview-animate-rightbottom-hide,
+    .star-popview-animate-righttop,.star-popview-animate-righttop-hide
+    {
+        transform-origin: left;
+    }
+
+    .star-popview-animate-lefttop,.star-popview-animate-lefttop-hide,
+    .star-popview-animate-left,.star-popview-animate-left-hide,
+    .star-popview-animate-leftbottom,.star-popview-animate-leftbottom-hide{
+        transform-origin: right;
+    }
+    .star-popview-animate-bottom,.star-popview-animate-bottom-hide,
+    .star-popview-animate-bottomleft,.star-popview-animate-bottomleft-hide,
+    .star-popview-animate-bottomright,.star-popview-animate-bottomright-hide{
+        transform-origin: 0 0;
+    }
+    .star-popview-animate-top,.star-popview-animate-top-hide,
+    .star-popview-animate-topleft,.star-popview-animate-topleft-hide,
+    .star-popview-animate-topright,.star-popview-animate-topright-hide{
+        transform-origin: bottom;
+    }
+
+    .star-popview-animate-bottom,.star-popview-animate-top,
+    .star-popview-animate-topleft,.star-popview-animate-topright,
+    .star-popview-animate-bottomleft,.star-popview-animate-bottomright{
+        animation:xzpopanimatebottom .2s cubic-bezier(.23,1,.32,1);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @keyframes xzpopanimatebottom
+    {
+        from { transform: scaleY(.8);opacity: 0;}
+        to { transform: scaleY(1);opacity: 1;}
+    }
+
+    .star-popview-animate-right,.star-popview-animate-left,
+    .star-popview-animate-righttop,.star-popview-animate-rightbottom,
+    .star-popview-animate-lefttop,
+    .star-popview-animate-leftbottom{
+        animation:xzpopanimateright .2s cubic-bezier(.23,1,.32,1);
+        opacity: 1;
+        visibility: visible;
+    }
+    @keyframes xzpopanimateright
+    {
+        from { transform: scaleX(.8);opacity: 0;}
+        to { transform: scaleX(1);opacity: 1;}
+    }
+
+    .star-popview-animate-right-hide,.star-popview-animate-left-hide,
+    .star-popview-animate-righttop-hide,.star-popview-animate-rightbottom-hide,
+    .star-popview-animate-lefttop-hide,
+    .star-popview-animate-leftbottom-hide{
+        animation:xzpopanimaterighthide .2s cubic-bezier(.755,.05,.855,.06);
+        transform: scaleX(.8);
+        opacity: 0;
+        visibility: hidden;
+    }
+    @keyframes xzpopanimaterighthide
+    {
+        from {transform: scaleX(1);opacity: 1; visibility: visible;}
+        to {transform: scaleX(.8);opacity: 0; visibility: hidden;}
+    }
+    .star-popview-animate-bottom-hide,.star-popview-animate-top-hide,
+    .star-popview-animate-topleft-hide,.star-popview-animate-topright-hide,
+    .star-popview-animate-bottomleft-hide,.star-popview-animate-bottomright-hide{
+        animation:xzpopanimatebottomhide .2s cubic-bezier(.755,.05,.855,.06);
+        transform: scaleY(.8);
+        opacity: 0;
+    }
+
+    @keyframes xzpopanimatebottomhide
+    {
+        from {transform: scaleY(1);opacity: 1;visibility: visible;}
+        to {transform: scaleY(.8);opacity: 0;visibility: hidden;}
+    }
+}

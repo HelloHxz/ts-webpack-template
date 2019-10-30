@@ -1,6 +1,7 @@
 import './index.less';
 
 export interface PopViewShowProperty {
+  placement: 'top' | 'bottom' | 'left' | 'right';
   render: () => JQuery<HTMLElement>;
 }
 
@@ -10,25 +11,15 @@ class PopView {
     this.root = $(`<div></div>`);
   }
 
-  show = () => {
+  show = () => {};
 
-  }
+  showByTarget = (target) => {};
 
-  showByTarget = (target) => {
+  showByRect = () => {};
 
-  }
+  hide = () => {};
 
-  showByRect = () => {
-
-  }
-
-  hide = () => {
-
-  }
-
-  destory = () => {
-    
-  }
+  destory = () => {};
 }
 
 export default PopView;

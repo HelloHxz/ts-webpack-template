@@ -9,17 +9,23 @@ class ListPage {
   }
   render = () => {
     const BTN = $('<button>home/detail</button>');
-    BTN.bind('click', () => {
+    BTN.bind('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       HashRoute.push('home/detail', {});
     });
     this.root.append(BTN);
     const BTN2 = $('<button>detail</button>');
-    BTN2.bind('click', () => {
+    BTN2.bind('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       HashRoute.push('detail', {});
     });
     this.root.append(BTN2);
     const BTN3 = $('<button>NotFound</button>');
-    BTN3.bind('click', () => {
+    BTN3.bind('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       HashRoute.push('home/detail2', {});
     });
     this.root.append(BTN3);
