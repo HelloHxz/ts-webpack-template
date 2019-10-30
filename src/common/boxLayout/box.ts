@@ -2,7 +2,7 @@
 export interface BoxProperty {
   direction: 'vertical' | 'horizontal';
   size: number | string;
-  className?: () => string | string;
+  className?: string;
   index: number;
   render: ({ wrapper }) => JQuery<HTMLElement> | null | void;
 }
@@ -19,8 +19,8 @@ class Box {
     this.inner = $(`<div class='xz-${shortMark}-box-inner'/>`);
     this.root.append(this.inner);
   }
-  setStyle = () => {
-
+  setStyle = (styles) => {
+    this.root.css(styles);
   }
   render = ():JQuery<HTMLElement> => {
     const { render } = this.props;

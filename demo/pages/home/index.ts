@@ -9,11 +9,13 @@ class HomePage {
 
   getMainBottomContent = ():JQuery<HTMLElement> => {
     const hBoxInstance:HBoxLayout = new HBoxLayout({
-      children: [{ width:30, render: ({ }) => {
+      children: [{ width:150, render: ({ wrapper }) => {
+        wrapper.css({backgroundColor:'red'});
         return $('<div />');
-      } }, { width:'auto', render: () => {
+      } }, { width:'auto', render: ({ }) => {
         return this.getRouteContent();
-      } }, { width:100, render: () => {
+      } }, { width:146, render: ({ wrapper }) => {
+        wrapper.css({backgroundColor:'green'});
         return null;
       } }]
     });
@@ -28,13 +30,17 @@ class HomePage {
     const mainVBox = new VBoxLayout({
       children: [
         {
-          height: 100, render: () => {
-
+          height: 45, render: ({ wrapper }) => {
+            wrapper.css({backgroundColor:'#eee'});
           }
         },
         {
           height: 'auto', render: () => {
             return this.getMainBottomContent();
+          }
+        },
+        {
+          height: 24, render: () => {
           }
         }
       ]

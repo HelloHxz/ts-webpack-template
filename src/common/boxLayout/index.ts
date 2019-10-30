@@ -3,31 +3,35 @@ import './index.less';
 
 export interface VBoxLayoutProperty {
   children: VBoxProperty[];
-  className?: () => string | string;
+  className?: string;
 }
 
-export interface VBoxProperty {
+export interface VBoxProperty  extends BaseBoxProperty{
   height: number | string;
-  className?: () => string | string;
-  render: ({ wrapper }) => JQuery<HTMLElement> | null | void;
 }
 
 export interface HBoxLayoutProperty {
   children: HBoxProperty[];
-  className?: () => string | string;
+  className?: string;
 }
 
-export interface HBoxProperty {
+export interface HBoxProperty extends BaseBoxProperty {
   width: number | string;
-  className?: () => string | string;
+}
+
+interface BaseBoxProperty {
+  className?: string;
+  action?: 'pop' | 'slide';
+  actionState?: 'show' | 'hide';
   render: ({ wrapper }) => JQuery<HTMLElement> | null | void;
 }
 
 export interface BoxLayoutProperty {
   direction: 'vertical' | 'horizontal';
-  className?: () => string | string;
+  className?: string;
   children: VBoxProperty[] | HBoxProperty[];
 }
+
 
 export { Box, BoxProperty };
 
@@ -65,7 +69,7 @@ class BoxLayout {
       let size: number | 'auto';
       if(i === 0 || i === 2) {
         if(!item.width || isNaN(item.width as number)) {
-          console.error('HBoxLayout children属性的width属性指定错误，第一个和最后一个width属性只能为数字');
+          console.error('HBoxLayout children属性的width属性指定错误，第一个和第三个width属性只能为数字');
           re = [];
           break;
         }
@@ -90,7 +94,7 @@ class BoxLayout {
       let size: number | 'auto';
       if(i === 0 || i === 2) {
         if(!item.height || isNaN(item.height as number)) {
-          console.error('VBoxLayout children属性的height属性指定错误，第一个和最后一个height属性只能为数字');
+          console.error('VBoxLayout children属性的height属性指定错误，第一个和第三个height属性只能为数字');
           re = [];
           break;
         }
@@ -110,14 +114,48 @@ class BoxLayout {
   }
 
   private initLayout = (): void => {
+    const { direction } = this.props;
+    this.root.css({ visibility: 'hidden' });
     const childrenConfig = this.processChildren(this.props.children);
     for(let i = 0, j = childrenConfig.length; i < j ; i += 1) {
       const config = childrenConfig[i];
       const box:Box = new Box(config);
+      const styles:any = {};
+      if(i===0) {
+        if(direction === 'vertical') {
+          styles.height = config.size as string;
+      } else {
+          styles.width = config.size as string;
+        }
+      } else if(i === 2) {
+        if(direction === 'vertical') {
+          styles.height = config.size as string;
+          styles.bottom = '0';
+        } else {
+          styles.width = config.size as string;
+          styles.right = '0';
+        }
+      }else {
+        if(direction === 'vertical') {
+          styles.top = childrenConfig[0].size  as string;
+          styles.bottom = childrenConfig[2]? childrenConfig[2].size  as string : '0';
+        } else {
+          styles.left = childrenConfig[0].size  as string;
+          styles.right = childrenConfig[2]? childrenConfig[2].size  as string : '0';
+        }
+      }
+      box.setStyle(styles);
+
       this.children.push(box);
       this.inner.append(box.render());
+      this.setInitActionState();
+      this.root.css({ visibility: 'visible' });
     }
   };
+
+  private setInitActionState = ():void => {
+
+  }
 
   render = ():JQuery<HTMLElement> => {
     return this.root;
