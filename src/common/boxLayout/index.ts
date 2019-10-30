@@ -141,7 +141,7 @@ class BoxLayout {
           styles.bottom = childrenConfig[2]? childrenConfig[2].size  as string : '0';
         } else {
           styles.left = childrenConfig[0].size  as string;
-          styles.right = childrenConfig[2]? childrenConfig[2].size  as string : '0';
+          styles.right =    childrenConfig[2]? childrenConfig[2].size  as string : '0';
         }
       }
       box.setStyle(styles);
