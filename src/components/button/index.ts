@@ -6,7 +6,7 @@ export interface ButtonProperty {
 }
 
 class Button {
-  root:JQuery<HTMLElement>;
+  root: JQuery<HTMLElement>;
   public props: ButtonProperty;
   constructor(props: ButtonProperty) {
     this.props = props;

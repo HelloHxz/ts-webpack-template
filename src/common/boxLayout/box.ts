@@ -1,4 +1,3 @@
-
 export interface BoxProperty {
   direction: 'vertical' | 'horizontal';
   size: number | string;
@@ -9,11 +8,11 @@ export interface BoxProperty {
 
 class Box {
   props: BoxProperty;
-  root:JQuery<HTMLElement>;
-  inner:JQuery<HTMLElement>;
+  root: JQuery<HTMLElement>;
+  inner: JQuery<HTMLElement>;
   constructor(props: BoxProperty) {
     this.props = props;
-    const shortMark = props.direction==='horizontal'?'h':'v';
+    const shortMark = props.direction === 'horizontal' ? 'h' : 'v';
     const className = [`xz-${shortMark}-box`];
     this.root = $(`<div class='${className.join(' ')}'/>`);
     this.inner = $(`<div class='xz-${shortMark}-box-inner'/>`);
@@ -21,16 +20,15 @@ class Box {
   }
   setStyle = (styles) => {
     this.root.css(styles);
-  }
-  render = ():JQuery<HTMLElement> => {
+  };
+  render = (): JQuery<HTMLElement> => {
     const { render } = this.props;
     const re = render({ wrapper: this.inner });
-    if(re) {
+    if (re) {
       this.inner.append(re);
     }
     return this.root;
-  }
+  };
 }
-
 
 export default Box;

@@ -33,12 +33,12 @@ class RouteUtils {
   };
 
   getGlobalPageClass = () => {
-    if(!this.routeConfig) {
+    if (!this.routeConfig) {
       return null;
     }
     const pageClass = this.routeConfig.pages['/'];
     return pageClass ? pageClass.default : null;
-  }
+  };
 
   convertPathToRouteInfo = (path: string): IRouteInfo => {
     /*
@@ -118,25 +118,25 @@ class RouteUtils {
     };
   };
 
-  combinePathAndQuery = (path:string, query:JSONProperty):string => {
-    let _path:string = path || '';
+  combinePathAndQuery = (path: string, query: JSONProperty): string => {
+    let _path: string = path || '';
     if (_path.indexOf('#') === 0) {
       _path = _path.substring(1);
     }
     const queryStr = this.queryToString(query);
-    let hash:string = `#${_path}`;
+    let hash = `#${_path}`;
     if (queryStr.length > 0) {
       hash = `${hash}?${queryStr}`;
     }
     return hash;
   };
 
-  queryToString = (query:JSONProperty):string => {
+  queryToString = (query: JSONProperty): string => {
     const queryArr: string[] = [];
-    const _query:JSONProperty = query || {};
+    const _query: JSONProperty = query || {};
     for (const key in _query) {
       const pVal = _query[key];
-      if (!isNaN(pVal) || typeof (pVal) === 'string') {
+      if (!isNaN(pVal) || typeof pVal === 'string') {
         queryArr.push(`${key}=${encodeURIComponent(pVal)}`);
       } else {
         console.warn(`url 传参 ${key} 的值不是字符串类型或数字, queryToString 方法报错`);

@@ -2,11 +2,10 @@ import AbstractRoute from '../../common/route';
 import { RegisterRouteProperty, RouteInitProps, IRouteInfo, JSONProperty } from '../../common/props';
 import RouteUtils from '../../common/route/utils';
 
-
 class HashRoute extends AbstractRoute {
   static rootRoute: HashRoute;
 
-  static push = (path, query:JSONProperty) => {
+  static push = (path, query: JSONProperty) => {
     window.location.hash = RouteUtils.combinePathAndQuery(path, query);
   };
 
@@ -26,12 +25,11 @@ class HashRoute extends AbstractRoute {
       }
     }
     const GlobalPage = RouteUtils.getGlobalPageClass();
-    if(GlobalPage) {
-      wrapper.append(new GlobalPage({route: HashRoute.rootRoute}).render());
+    if (GlobalPage) {
+      wrapper.append(new GlobalPage({ route: HashRoute.rootRoute }).render());
     } else {
       wrapper.append(HashRoute.rootRoute.render());
     }
- 
   };
   constructor(props: RouteInitProps) {
     super(props);
@@ -42,7 +40,7 @@ class HashRoute extends AbstractRoute {
   }
 
   getRouteInfo = (): IRouteInfo => {
-    let path:string = '';
+    let path = '';
     if (!this.props.route) {
       path = RouteUtils.getPathFromUrl();
     } else {

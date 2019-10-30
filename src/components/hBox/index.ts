@@ -11,5 +11,4 @@ class HBoxLayout extends BoxLayout {
   }
 }
 
-
 export default HBoxLayout;

@@ -1,13 +1,13 @@
-import { HashRoute } from 'star-web';
+import { HashRoute, ToolTip } from 'star-web';
 
 class ListPage {
-  root: JQuery<HTMLElement> | null = null;
+  root: JQuery<HTMLElement>;
   props: any;
   constructor(props) {
     this.props = props;
+    this.root = $('<div class="demo-page"></div>');
   }
   render = () => {
-    this.root = $('<div>List</div>');
     const BTN = $('<button>home/detail</button>');
     BTN.bind('click', () => {
       HashRoute.push('home/detail', {});
@@ -23,7 +23,13 @@ class ListPage {
       HashRoute.push('home/detail2', {});
     });
     this.root.append(BTN3);
-    return this.root;
+
+    const toolTipArea = new ToolTip({
+      render:():JQuery<HTMLElement> => {
+        return this.root;
+      }
+    });
+    return toolTipArea.render();
   }
 }
 

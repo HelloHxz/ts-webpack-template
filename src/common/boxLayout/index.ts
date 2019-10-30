@@ -6,7 +6,7 @@ export interface VBoxLayoutProperty {
   className?: string;
 }
 
-export interface VBoxProperty  extends BaseBoxProperty{
+export interface VBoxProperty extends BaseBoxProperty {
   height: number | string;
 }
 
@@ -32,7 +32,6 @@ export interface BoxLayoutProperty {
   children: VBoxProperty[] | HBoxProperty[];
 }
 
-
 export { Box, BoxProperty };
 
 class BoxLayout {
@@ -42,33 +41,34 @@ class BoxLayout {
   children: Box[] = [];
   constructor(props: BoxLayoutProperty) {
     this.props = props;
-    const className = [`xz-${props.direction==='horizontal'?'h':'v'}-box-layout`];
+    const className = [`xz-${props.direction === 'horizontal' ? 'h' : 'v'}-box-layout`];
     this.root = $(`<div class='${className.join(' ')}'/>`);
-    this.inner = $(`<div class='xz-${props.direction==='horizontal'?'h':'v'}-box-layout-inner'/>`);
+    this.inner = $(`<div class='xz-${props.direction === 'horizontal' ? 'h' : 'v'}-box-layout-inner'/>`);
     this.root.append(this.inner);
     this.initLayout();
   }
 
   private processChildren = (children: VBoxProperty[] | HBoxProperty[]): BoxProperty[] => {
     const { direction } = this.props;
-    if(children.length > 3) {
-      console.warn(`${direction === 'horizontal'? 'HBoxLayout':'VBoxLayout'}组件children参数只接受1~3长度的数组,而实际接受了${children.length}个`);
+    if (children.length > 3) {
+      console.warn(
+        `${direction === 'horizontal' ? 'HBoxLayout' : 'VBoxLayout'}组件children参数只接受1~3长度的数组,而实际接受了${
+          children.length
+        }个`
+      );
     }
-    let re:BoxProperty[] = [];
-    if(direction === 'horizontal') {
-      re = this.processHBoxChildren(children as HBoxProperty[]);
-    } else {
-      re = this.processVBoxChildren(children as VBoxProperty[]);
+    if (direction === 'horizontal') {
+      return this.processHBoxChildren(children as HBoxProperty[]);
     }
-    return re;
-  }
+    return this.processVBoxChildren(children as VBoxProperty[]);
+  };
   private processHBoxChildren = (children: HBoxProperty[]): BoxProperty[] => {
-    let re:BoxProperty[] = [];
-    for(let i = 0, j = children.length; i < j; i += 1) {
-      const item:HBoxProperty = children[i];
+    let re: BoxProperty[] = [];
+    for (let i = 0, j = children.length; i < j; i += 1) {
+      const item: HBoxProperty = children[i];
       let size: number | 'auto';
-      if(i === 0 || i === 2) {
-        if(!item.width || isNaN(item.width as number)) {
+      if (i === 0 || i === 2) {
+        if (!item.width || isNaN(item.width as number)) {
           console.error('HBoxLayout children属性的width属性指定错误，第一个和第三个width属性只能为数字');
           re = [];
           break;
@@ -86,14 +86,14 @@ class BoxLayout {
       });
     }
     return re;
-  }
+  };
   private processVBoxChildren = (children: VBoxProperty[]): BoxProperty[] => {
-    let re:BoxProperty[] = [];
-    for(let i = 0, j = children.length; i < j; i += 1) {
-      const item:VBoxProperty = children[i];
+    let re: BoxProperty[] = [];
+    for (let i = 0, j = children.length; i < j; i += 1) {
+      const item: VBoxProperty = children[i];
       let size: number | 'auto';
-      if(i === 0 || i === 2) {
-        if(!item.height || isNaN(item.height as number)) {
+      if (i === 0 || i === 2) {
+        if (!item.height || isNaN(item.height as number)) {
           console.error('VBoxLayout children属性的height属性指定错误，第一个和第三个height属性只能为数字');
           re = [];
           break;
@@ -111,55 +111,54 @@ class BoxLayout {
       });
     }
     return re;
-  }
+  };
 
   private initLayout = (): void => {
     const { direction } = this.props;
     this.root.css({ visibility: 'hidden' });
     const childrenConfig = this.processChildren(this.props.children);
-    for(let i = 0, j = childrenConfig.length; i < j ; i += 1) {
+    for (let i = 0, j = childrenConfig.length; i < j; i += 1) {
       const config = childrenConfig[i];
-      const box:Box = new Box(config);
-      const styles:any = {};
-      if(i===0) {
-        if(direction === 'vertical') {
+      const box: Box = new Box(config);
+      const styles: any = {};
+      if (i === 0) {
+        if (direction === 'vertical') {
           styles.height = config.size as string;
-      } else {
+        } else {
           styles.width = config.size as string;
         }
-      } else if(i === 2) {
-        if(direction === 'vertical') {
+      } else if (i === 2) {
+        if (direction === 'vertical') {
           styles.height = config.size as string;
           styles.bottom = '0';
         } else {
           styles.width = config.size as string;
           styles.right = '0';
         }
-      }else {
-        if(direction === 'vertical') {
-          styles.top = childrenConfig[0].size  as string;
-          styles.bottom = childrenConfig[2]? childrenConfig[2].size  as string : '0';
+      } else {
+        if (direction === 'vertical') {
+          styles.top = childrenConfig[0].size as string;
+          styles.bottom = childrenConfig[2] ? (childrenConfig[2].size as string) : '0';
         } else {
-          styles.left = childrenConfig[0].size  as string;
-          styles.right =    childrenConfig[2]? childrenConfig[2].size  as string : '0';
+          styles.left = childrenConfig[0].size as string;
+          styles.right = childrenConfig[2] ? (childrenConfig[2].size as string) : '0';
         }
       }
       box.setStyle(styles);
 
       this.children.push(box);
       this.inner.append(box.render());
-      this.setInitActionState();
-      this.root.css({ visibility: 'visible' });
     }
+    this.setInitActionState();
   };
 
-  private setInitActionState = ():void => {
+  private setInitActionState = (): void => {
+    this.root.css({ visibility: 'visible' });
+  };
 
-  }
-
-  render = ():JQuery<HTMLElement> => {
+  render = (): JQuery<HTMLElement> => {
     return this.root;
-  }
+  };
 }
 
 export default BoxLayout;
