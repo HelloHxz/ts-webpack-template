@@ -7,7 +7,9 @@ export interface PopViewShowProperty {
 
 class PopView {
   root: JQuery<HTMLElement>;
-  constructor() {
+  props: PopViewShowProperty;
+  constructor(props: PopViewShowProperty) {
+    this.props = props;
     this.root = $(`<div></div>`);
   }
 
@@ -20,6 +22,14 @@ class PopView {
   hide = () => {};
 
   destory = () => {};
+
+  render = ():JQuery<HTMLElement>  => {
+    const { render } = this.props;
+    if(render) {
+      return render();
+    }
+    return $('<div>select组件缺少render函数</div>');
+  }
 }
 
 export default PopView;

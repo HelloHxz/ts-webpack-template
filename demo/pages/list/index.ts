@@ -1,4 +1,4 @@
-import { HashRoute, ToolTip } from 'star-web';
+import { HashRoute, ToolTip, Select } from 'star-web';
 
 class ListPage {
   root: JQuery<HTMLElement>;
@@ -35,6 +35,11 @@ class ListPage {
         return this.root;
       }
     });
+
+    const selectInstance = new Select({
+      data:[{ label:'x', key: 'x' }],
+    });
+    this.root.append(selectInstance.render());
     return toolTipArea.render();
   }
 }
