@@ -23,13 +23,13 @@ class PopView {
 
   destory = () => {};
 
-  render = ():JQuery<HTMLElement>  => {
+  render = (): JQuery<HTMLElement> => {
     const { render } = this.props;
-    if(render) {
+    if (render) {
       return render();
     }
     return $('<div>select组件缺少render函数</div>');
-  }
+  };
 }
 
 export default PopView;
