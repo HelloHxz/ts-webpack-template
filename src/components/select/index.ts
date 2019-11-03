@@ -26,11 +26,23 @@ class Select {
     this.root = $(`<div class='${className.join(' ')}'>xxxx</div>`);
     this.popViewInstance = new PopView({
       placement: 'bottom',
+      renderContent: () => {
+        return $('<div/>');
+      },
       render: () => {
         return this.root;
       },
     });
+    this.bindEvent();
   }
+
+  private bindEvent = () => {
+    this.root.bind('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.popViewInstance.showByTargetElement(this.root);
+    });
+  };
 
   show = () => {};
 
