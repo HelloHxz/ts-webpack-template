@@ -30,6 +30,14 @@ class ListPage {
     });
     this.root.append(BTN3);
 
+    const BTN4 = $('<button>home/second/detail</button>');
+    BTN4.bind('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      HashRoute.push('home/second/detail', {});
+    });
+    this.root.append(BTN4);
+
     const toolTipArea = new ToolTip({
       render:():JQuery<HTMLElement> => {
         return this.root;

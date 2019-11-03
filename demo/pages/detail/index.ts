@@ -1,4 +1,4 @@
-import { Button } from 'star-web';
+import { Button,HashRoute } from 'star-web';
 
 
 class DetailPage {
@@ -10,8 +10,13 @@ class DetailPage {
   render = () => {
 
     this.root = $('<div>Detail</div>');
-    const btn:Button = new Button({});
-    this.root.append(btn.root);
+    const BTN4 = $('<button>home/second/list</button>');
+    BTN4.bind('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      HashRoute.push('home/second/list', {});
+    });
+    this.root.append(BTN4);
     return this.root;
   }
 }
