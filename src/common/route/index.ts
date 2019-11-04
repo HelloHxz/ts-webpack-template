@@ -13,7 +13,7 @@ export default abstract class AbstractRoute {
       pageName: '',
       remainPath: '',
     };
-    this.props = props;
+    this.props =   props;
     this.root = $("<div class='star-route-wrapper'/>");
   }
 }
