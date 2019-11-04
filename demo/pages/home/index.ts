@@ -27,6 +27,7 @@ class HomePage {
   }
 
   render = (): JQuery<HTMLElement> => {
+    console.log('render homepage');
     const mainVBox = new VBoxLayout({
       children: [
         {

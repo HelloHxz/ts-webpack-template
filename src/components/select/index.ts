@@ -1,5 +1,5 @@
 import { PopView } from 'star-web';
-import {JSONProperty} from '../../common/props';
+import { JSONProperty } from '../../common/props';
 import './index.less';
 
 /*
@@ -13,25 +13,36 @@ import './index.less';
 */
 
 export interface SelectProperty {
-  data: (() => Array<JSONProperty> ) |  Array<JSONProperty>;
-  className?:string;
+  data: (() => Array<JSONProperty>) | Array<JSONProperty>;
+  className?: string;
 }
-
 
 class Select {
   root: JQuery<HTMLElement>;
   popViewInstance: PopView;
-  hasInited: boolean = false;
+  hasInited = false;
   constructor(props: SelectProperty) {
     const className = [`star-select`];
     this.root = $(`<div class='${className.join(' ')}'>xxxx</div>`);
     this.popViewInstance = new PopView({
       placement: 'bottom',
+      renderContent: () => {
+        return $('<div/>');
+      },
       render: () => {
         return this.root;
-      }
+      },
     });
+    this.bindEvent();
   }
+
+  private bindEvent = () => {
+    this.root.bind('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.popViewInstance.showByTargetElement(this.root);
+    });
+  };
 
   show = () => {};
 
@@ -40,12 +51,12 @@ class Select {
   destory = () => {};
 
   render = () => {
-    if(this.hasInited) {
+    if (this.hasInited) {
       return this.root;
     }
     this.hasInited = true;
     return this.popViewInstance.render();
-  }
+  };
 }
 
 export default Select;

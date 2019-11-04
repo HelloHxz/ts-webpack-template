@@ -6,7 +6,4 @@ import PopView from './components/popView';
 import ToolTip from './components/toolTip';
 import Select from './components/select';
 
-export { 
-         Button, HBoxLayout, VBoxLayout, 
-         HashRoute, PopView, ToolTip, Select
-       };
+export { Button, HBoxLayout, VBoxLayout, HashRoute, PopView, ToolTip, Select };

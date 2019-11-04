@@ -59,8 +59,8 @@ class HashRoute extends AbstractRoute {
     } else {
       this.routeInfo = reRenderRouteInfo;
       if (this.childRoute) {
+        (this.childRoute as HashRoute).reRender();
         this.childRoute.routeInfo = (this.childRoute as HashRoute).getRouteInfo();
-        (this.childRoute as HashRoute).render();
       }
     }
   };

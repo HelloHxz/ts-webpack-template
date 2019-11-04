@@ -13,6 +13,7 @@ window.onload = () => {
         'home': require('./pages/home'),
         'list': require('./pages/list'),
         'detail': require('./pages/detail'),
+        'second': require('./pages/second'),
     },
   });
 }
