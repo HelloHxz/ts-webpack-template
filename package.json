@@ -13,7 +13,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-lib": "node ./scripts/buildLib.js",
     "fix": "eslint --fix --ext .ts src",
-    "precommit": "npm run eslint && lint-staged",
     "eslint": "eslint --ext .tsx,.ts --fix ./src"
   },
   "author": "",
@@ -62,5 +61,10 @@
   },
   "browserslist": [
     "> 0.01%"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint && lint-staged"
+    }
+  }
 }
