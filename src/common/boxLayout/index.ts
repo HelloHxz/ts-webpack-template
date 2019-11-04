@@ -32,8 +32,6 @@ export interface BoxLayoutProperty {
   children: VBoxProperty[] | HBoxProperty[];
 }
 
-export { Box, BoxProperty };
-
 class BoxLayout {
   props: BoxLayoutProperty;
   root: JQuery<HTMLElement>;

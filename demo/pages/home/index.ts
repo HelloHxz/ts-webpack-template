@@ -10,12 +10,12 @@ class HomePage {
   private getMainBottomContent = ():JQuery<HTMLElement> => {
     const hBoxInstance:HBoxLayout = new HBoxLayout({
       children: [{ width:150, render: ({ wrapper }) => {
-        wrapper.css({backgroundColor:'red'});
+        wrapper.css({borderRight:'1px solid #ddd'});
         return $('<div />');
       } }, { width:'auto', render: ({ }) => {
         return this.getRouteContent();
       } }, { width:146, render: ({ wrapper }) => {
-        wrapper.css({backgroundColor:'green'});
+        wrapper.css({borderLeft:'1px solid #ddd'});
         return null;
       } }]
     });
@@ -41,7 +41,8 @@ class HomePage {
           }
         },
         {
-          height: 24, render: () => {
+          height: 24, render: ({ wrapper }) => {
+            wrapper.css({borderTop:'1px solid #ddd'});
           }
         }
       ]
