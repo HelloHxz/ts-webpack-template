@@ -7,7 +7,7 @@ class HomePage {
     this.props = props;
   }
 
-  getMainBottomContent = ():JQuery<HTMLElement> => {
+  private getMainBottomContent = ():JQuery<HTMLElement> => {
     const hBoxInstance:HBoxLayout = new HBoxLayout({
       children: [{ width:150, render: ({ wrapper }) => {
         wrapper.css({backgroundColor:'red'});
@@ -22,7 +22,7 @@ class HomePage {
     return hBoxInstance.render();
   }
 
-  getRouteContent = ():JQuery<HTMLElement> => {
+  private getRouteContent = ():JQuery<HTMLElement> => {
     return new HashRoute(this.props).render();
   }
 
