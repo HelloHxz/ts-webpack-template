@@ -27,7 +27,8 @@ class Select {
     this.popViewInstance = new PopView({
       placement: 'bottom',
       renderContent: () => {
-        return $('<div/>');
+         return $('<span style="color:#fff;background:black;border-radius:3px;padding:5px">asdasdasdasdasd</span>');
+        // return $('<div style="width:210px;height:250px;border:1px solid #bbb">asdasdasdasdasd</div>');
       },
       render: () => {
         return this.root;

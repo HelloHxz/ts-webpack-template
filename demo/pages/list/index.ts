@@ -38,16 +38,17 @@ class ListPage {
     });
     this.root.append(BTN4);
 
+    const selectInstance = new Select({
+      data:[{ label:'x', key: 'x' }],
+    });
+    this.root.append(selectInstance.render());
+    
     const toolTipArea = new ToolTip({
       render:():JQuery<HTMLElement> => {
         return this.root;
       }
     });
 
-    const selectInstance = new Select({
-      data:[{ label:'x', key: 'x' }],
-    });
-    this.root.append(selectInstance.render());
     return toolTipArea.render();
   }
 }

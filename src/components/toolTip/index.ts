@@ -23,7 +23,6 @@ class ToolTip {
       root.bind('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        alert('s');
       });
       return root;
     }
