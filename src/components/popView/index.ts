@@ -20,16 +20,16 @@ class PopView {
   }
 
   show = (params) => {};
-  
-  private getBoundingClientRect = (target: JQuery<HTMLElement>):ClientRect => {
-    const targetDom:HTMLElement = $(target)[0];
+
+  private getBoundingClientRect = (target: JQuery<HTMLElement>): ClientRect => {
+    const targetDom: HTMLElement = $(target)[0];
     if (this.positionMode === 'fixed') {
       return targetDom.getBoundingClientRect();
     }
-    const left:number = targetDom.offsetLeft;
-    const top:number = targetDom.offsetTop;
-    const width:number = targetDom.offsetWidth;
-    const height:number = targetDom.offsetHeight;
+    const left: number = targetDom.offsetLeft;
+    const top: number = targetDom.offsetTop;
+    const width: number = targetDom.offsetWidth;
+    const height: number = targetDom.offsetHeight;
     return {
       width,
       height,
@@ -51,9 +51,9 @@ class PopView {
     }
 
     this.root.css({ visibility: 'hidden' });
-    const popViewRect:ClientRect = this.root[0].getBoundingClientRect();
-    setTimeout(()=>{
-      const rect:ClientRect = this.getBoundingClientRect(target);
+    const popViewRect: ClientRect = this.root[0].getBoundingClientRect();
+    setTimeout(() => {
+      const rect: ClientRect = this.getBoundingClientRect(target);
       const styles = { top: 0, left: 0, visibility: 'visible' };
       const offset = { x: 0, y: 0 };
       styles.top = parseInt(rect.bottom.toString(), 10) + (offset.y || 0);
@@ -61,7 +61,6 @@ class PopView {
       this.root.css(styles);
       this.inner.addClass('star-popview-animate-bottom');
     }, 10);
-    
   };
 
   showByRect = () => {};
