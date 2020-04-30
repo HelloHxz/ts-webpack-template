@@ -57,7 +57,7 @@
   "dependencies": {
     "@types/jquery": "^3.3.31",
     "babel-polyfill": "^6.26.0",
-    "jquery": "^1.11.1"
+    "jquery": "^3.5.0"
   },
   "browserslist": [
     "> 0.01%"
